@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "decision-canvas-evidence-1",
+  "evidenceType": "browser-visible-final-report",
+  "applicationBackupFormat": false,
+  "dummyData": true,
+  "capturedAt": "2026-08-26",
+  "case": {
+    "name": "店舗修理受付・部品取り寄せ滞留改善",
+    "scope": "小売店舗の修理受付から、部品発注、入荷確認、顧客への連絡まで",
+    "purpose": "担当者が交代しても各案件の現在地と次の行動を3分以内に把握し、受付から24時間以内に部品発注または顧客連絡へ進める状態をつくる。",
+    "successMeasure": "2週間、受付から次工程までの時間・3日以上の滞留件数・確認作業時間を記録する。目標は24時間以内80%以上、滞留50%減、確認3分以内。",
+    "constraints": "実在する顧客名・伝票番号は使わない。架空データで1店舗・2週間だけ試行し、既存端末で入力1件2分以内とする。",
+    "decider": "デモ用：サービスカウンター責任者"
+  },
+  "facts": [
+    {"category":"ビジネスモデル","status":"確認済み","content":"修理受付は、症状確認、見積案内、部品手配、入荷後の顧客連絡を一連のサービスとして提供し、安心して再来店できる体験を支える。","source":"架空の業務手順書","metric":"月80件"},
+    {"category":"現状","status":"確認済み","content":"受付票、仕入先メール、担当者の記憶に情報が分散し、交代した担当者は3か所を確認して次の行動を判断している。","source":"架空の受付記録20件と作業観察","metric":"確認平均12分"},
+    {"category":"理想","status":"確認済み","content":"受付日、現在工程、次の行動、担当者、期限、最終更新を一画面で確認でき、交代時も3分以内に判断できる。","source":"架空の責任者ヒアリング","metric":"確認3分以内・次工程24時間以内"},
+    {"category":"問題","status":"一部確認","content":"架空の20件中8件で次の行動が明記されず、3件が3日以上更新されていなかった。","source":"架空の受付サンプル20件","metric":"未記載8件・3日超滞留3件"},
+    {"category":"原因","status":"仮説","content":"更新項目と更新タイミングが統一されておらず、作業中断時の記録が担当者任せになっている可能性がある。","source":"架空の担当者ヒアリング2名","metric":"更新ルール0件"},
+    {"category":"示唆","status":"仮説","content":"遅延の中心は部品納期そのものだけでなく、現在工程と次の行動が見えないため確認が止まることにあると考えられる。","source":"架空20件の滞留理由比較","metric":"滞留3件中2件が次行動不明"},
+    {"category":"課題","status":"仮説","content":"必須6項目を一画面に統一し、退勤前・中断時に2分で更新する運用を2週間試す。","source":"架空の改善検討案","metric":"1店舗・2週間"}
+  ],
+  "candidates": [
+    {"selected":true,"problem":"次の行動が明記されず滞留する案件を減らせていない","impact":3,"frequency":3,"evidence":3,"evidenceGrade":"B","feasibility":3,"referenceScore":50,"humanReviewed":true},
+    {"selected":false,"problem":"担当交代時に案件の現在地を3分以内で把握できない","impact":3,"frequency":3,"evidence":2,"evidenceGrade":"C","feasibility":3,"referenceScore":44,"humanReviewed":true}
+  ],
+  "decision": {
+    "status": "採用",
+    "finalProblem": "修理受付案件で次の行動が記録されないため、担当交代後の確認と次工程への移行が止まり、受付から24時間以内に部品発注または顧客連絡へ進められない案件が発生している。",
+    "finalTask": "サービスカウンター担当者が、受付日・現在工程・次の行動・担当者・期限・最終更新の6項目を一画面で記録し、退勤前または作業中断時に2分以内で更新する運用を、1店舗で2週間試行する。",
+    "expectedOutcome": "次工程へ24時間以内に進む案件80%以上、3日超の滞留50%減、交代時の確認3分以内。",
+    "reason": "20件中8件の次行動未記載と3件の滞留へ直接対応し、既存端末・1店舗・2週間に限定すれば低リスクで効果を測れるため。仮説3件は残るため、正式展開は試行結果で再判断する。",
+    "nextAction": "6項目の空テンプレートを作り、架空案件10件で入力時間と見落としを確認する。責任者の了承後に2週間の試行を開始する。",
+    "recordId": "demo-repair-v1",
+    "finalizedAt": "2026-08-26T22:51:56+09:00"
+  },
+  "generation": {
+    "provider": "OpenAI Responses API",
+    "analysisVersion": "openai-responses-1",
+    "modelDisplay": "gpt-5.4-mini-2026-03-17",
+    "responseId": null,
+    "responseIdRedacted": true,
+    "totalTokens": 2502,
+    "provenanceVerifiedAfterReload": false
+  }
+}

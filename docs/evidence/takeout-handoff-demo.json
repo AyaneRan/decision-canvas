@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "decision-canvas-evidence-1",
+  "evidenceType": "browser-visible-final-report",
+  "applicationBackupFormat": false,
+  "dummyData": true,
+  "capturedAt": "2026-08-26",
+  "case": {
+    "name": "テイクアウト注文・受け渡しミス改善",
+    "scope": "架空の飲食店における電話・Web注文の受付から、調理指示、商品確認、受け渡しまで",
+    "purpose": "注文変更やサイド商品を含む全品を受取予定時刻までに準備し、受け渡し担当者が1分以内に内容を確認できる状態をつくる。",
+    "successMeasure": "2週間・50件で、商品不足件数、受け渡し待ち時間、最終確認時間を記録する。目標は不足0件、待ち時間中央値3分以内、確認1分以内。",
+    "constraints": "顧客名・電話番号・注文番号は使わない。架空データ、1店舗、既存タブレットと紙だけで試し、追加入力は1件1分以内とする。",
+    "decider": "デモ用：店舗責任者"
+  },
+  "facts": [
+    {"category":"ビジネスモデル","status":"確認済み","content":"テイクアウトは、予定時刻に正しい商品を短時間で受け取れる体験を提供し、再注文につなげるサービスである。","source":"架空の店舗サービス基準","metric":"週100件"},
+    {"category":"現状","status":"確認済み","content":"電話注文は紙、Web注文はタブレットで管理し、変更内容は別メモに追記するため、受け渡し担当者は3か所を確認している。","source":"架空の注文記録30件と作業観察","metric":"最終確認平均4分"},
+    {"category":"理想","status":"確認済み","content":"主商品、サイド商品、変更内容、準備状態、最終確認を一つのチェックリストで確認し、1分以内に受け渡せる。","source":"架空の店舗責任者ヒアリング","metric":"確認1分以内"},
+    {"category":"問題","status":"一部確認","content":"架空の30件中4件でサイド商品または変更内容の反映漏れがあり、6件で受け渡し待ちが5分を超えた。","source":"架空の注文サンプル30件","metric":"不足4件・5分超6件"},
+    {"category":"示唆","status":"一部確認","content":"不足4件はすべて変更注文または複数袋の商品で起きており、変更点と袋数を共通表示すると改善する可能性がある。","source":"架空30件のエラー比較","metric":"4件中4件"},
+    {"category":"原因","status":"仮説","content":"注文後の変更が紙、タブレット、口頭のすべてに同時反映されず、最終確認の対象が担当者ごとに異なる可能性がある。","source":"架空のスタッフヒアリング3名","metric":"変更注文8件"},
+    {"category":"課題","status":"仮説","content":"主商品、サイド、変更点、袋数、準備状態の5項目チェックを作り、架空注文50件で確認時間と漏れを測る。","source":"架空の改善検討案","metric":"1店舗・2週間・50件"}
+  ],
+  "candidates": [
+    {"selected":true,"problem":"注文情報の確認箇所が分散し、受け渡し確認に時間がかかっている","impact":3,"frequency":3,"evidence":3,"evidenceGrade":"B","feasibility":3,"referenceScore":50,"humanReviewed":true},
+    {"selected":false,"problem":"変更やサイド商品の反映漏れがあり、受取時点で全品が揃っていない","impact":3,"frequency":3,"evidence":2,"evidenceGrade":"C","feasibility":3,"referenceScore":44,"humanReviewed":true}
+  ],
+  "decision": {
+    "status": "採用",
+    "finalProblem": "電話注文、Web注文、変更メモが分散しているため、受け渡し担当者の最終確認に平均4分かかり、商品不足や5分超の待ちが発生している。",
+    "finalTask": "受け渡し担当者が、主商品・サイド・変更点・袋数・準備状態を1枚のチェックリストで3手順に沿って確認する運用を、架空注文50件・1店舗・2週間で試行する。",
+    "expectedOutcome": "商品不足0件、受け渡し待ち時間中央値3分以内、最終確認1分以内。",
+    "reason": "確認済みの現状と理想が直接対応し、根拠確度Bである。1店舗・架空データ・2週間に限定すれば低リスクで、確認時間と不足件数を定量比較できるため。",
+    "nextAction": "5項目の空チェックリストを作成し、架空注文5件で入力時間・確認時間・見落としを測ってから50件の試行へ進む。",
+    "recordId": "demo-takeout-v1",
+    "finalizedAt": "2026-08-26T22:57:40+09:00"
+  },
+  "generation": {
+    "provider": "OpenAI Responses API",
+    "analysisVersion": "openai-responses-1",
+    "modelDisplay": "gpt-5.4-mini-2026-03-17",
+    "responseId": null,
+    "responseIdRedacted": true,
+    "totalTokens": 2326,
+    "provenanceVerifiedAfterReload": false
+  }
+}
