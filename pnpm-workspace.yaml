@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild@0.27.3: true
+  sharp@0.34.5: true
+  unrs-resolver@1.12.2: true
+  workerd@1.20260515.1: true
